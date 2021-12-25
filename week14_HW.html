@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Week14 HW</title>
+</head>
+<body>
+	<img src="die1.png" id="die1" alt="blank">
+	<img src="die1.png" id="die2" alt="blank">
+	<img src="die1.png" id="die3" alt="blank">
+	<img src="die1.png" id="die4" alt="blank">
+	<img src="die1.png" id="die5" alt="blank">
+	<img src="die1.png" id="die6" alt="blank"><br>
+	<img src="die1.png" id="die7" alt="blank">
+	<img src="die1.png" id="die8" alt="blank">
+	<img src="die1.png" id="die9" alt="blank">
+	<img src="die1.png" id="die10" alt="blank">
+	<img src="die1.png" id="die11" alt="blank">
+	<img src="die1.png" id="die12" alt="blank">
+	<form action="#">
+		<input type="button" id="rollButton" value="roll dice"><br><br>
+	</form>
+	<table id="table" border=1></table>
+
+	<script type="text/javascript">
+		var totalRoll = 0;
+		var f1=0, f2=0, f3=0, f4=0, f5=0, f6=0 ;
+		window.addEventListener( "load", start );
+		function start() {
+			var button = document.getElementById("rollButton");
+			button.addEventListener("click", rollDice);
+		}
+		function rollDice() {
+			for(var i=1; i<=12; i++) {
+				var dieValue = Math.floor( Math.random()*6 + 1 );
+				setImage( i, dieValue);
+				totalRoll++;
+				talRoll(dieValue);
+			}
+			table();
+		}
+		function setImage(int, dieValue) {
+			document.getElementById("die" + int).setAttribute( "src", "die" + dieValue + ".png");
+			document.getElementById("die" + int).setAttribute( "alt", "img of die" + dieValue );
+		}
+		function talRoll(value) {
+			switch(value) {
+				case 1:
+					f1++;
+					break;
+				case 2:
+					f2++;
+					break;
+				case 3:
+					f3++;
+					break;
+				case 4:
+					f4++;
+					break;
+				case 5:
+					f5++;
+					break;
+				case 6:
+					f6++;
+					break;
+			}
+		}
+		function table() {
+			var fretab = document.getElementById("table");
+			fretab.innerHTML = "<table>" + 
+							   "<caption>Dice Rolling Frequency</caption>" +
+							   "<tr><th>Face</th><th>Frequency</th><th>Percent</th></tr>" +
+							   "<tr><td>1</td> <td>" + f1 + "</td> <td>" + Math.floor((f1/totalRoll)*100) + "%" + "</td></tr>" +
+							   "<tr><td>2</td> <td>" + f2 + "</td> <td>" + Math.floor((f2/totalRoll)*100) + "%" + "</td></tr>" +
+							   "<tr><td>3</td> <td>" + f3 + "</td> <td>" + Math.floor((f3/totalRoll)*100) + "%" + "</td></tr>" +
+							   "<tr><td>4</td> <td>" + f4 + "</td> <td>" + Math.floor((f4/totalRoll)*100) + "%" + "</td></tr>" +
+							   "<tr><td>5</td> <td>" + f5 + "</td> <td>" + Math.floor((f5/totalRoll)*100) + "%" + "</td></tr>" +
+							   "<tr><td>6</td> <td>" + f6 + "</td> <td>" + Math.floor((f6/totalRoll)*100) + "%" + "</td></tr>" +
+							   "</table>" ;
+		}
+
+	</script>
+</body>
+</html>
